@@ -4,37 +4,36 @@ namespace Zjk\DbInterface;
 interface DBInterface
 {
     /**
-     * 执行 insert/update/delete
-     * return: 影响行数
+     * insert/update/delete
+     * @return int affectedRows
      */
     public function execute($sql, array $params = array());
 
     /**
-     * 返回一行数据
+     * fetchRow/fetchOne [fieldName=>value,...]
      * return: array|null
      */
     public function fetch($sql, array $params = array());
 
     /**
-     * 返回多行数据
+     * fetchAll [[fieldName=>value,...]]
      * return: array
      */
     public function fetchAll($sql, array $params = array());
 
     /**
-     * 返回单个标量（COUNT / MAX / 某个字段）
+     * fetchValue
      * return: mixed
      */
     public function fetchValue($sql, array $params = array());
 
     /**
-     * 获取最后插入ID
      * return: string|int
      */
     public function lastInsertId();
 
     /**
-     * 事务封装
+     * transaction
      */
     public function transaction(callable $callback);
 

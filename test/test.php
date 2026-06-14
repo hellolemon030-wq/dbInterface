@@ -36,7 +36,7 @@ successLog("insert into test_user");
 
 $db->execute(
     "INSERT INTO test_user(name) VALUES(?)",
-    ['张三']
+    ['testUserName']
 );
 
 $id = $db->lastInsertId();
@@ -75,17 +75,23 @@ successLog("transaction commit");
 $db->transaction(function ($db) {
     $db->execute(
         "INSERT INTO test_user(name) VALUES(?)",
-        ['事务测试']
+        ['transcationTest']
     );
 });
 
 successLog("transaction rollback");
 
+$count = $db->fetchValue(
+    "SELECT COUNT(*) FROM test_user"
+);
+
+echo "user count = {$count}\n";
+
 try {
     $db->transaction(function ($db) {
         $db->execute(
             "INSERT INTO test_user(name) VALUES(?)",
-            ['rollback测试']
+            ['rollbackTest']
         );
 
         throw new Exception('test rollback');
@@ -98,7 +104,7 @@ $count = $db->fetchValue(
     "SELECT COUNT(*) FROM test_user"
 );
 
-echo "count = {$count}\n";
+echo "user count = {$count}\n";
 
 successLog("ddl test");
 
@@ -126,7 +132,6 @@ echo "=== done ===\n";
 
 
 
-// 绿色标注成功语句；cmd绿色！！！
 function successLog($msg){
     echo "\033[32msuccess: {$msg}\033[0m\n";
 }
