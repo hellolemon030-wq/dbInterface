@@ -1,0 +1,16 @@
+{
+    "name": "zjk/db-interface",
+    "description": "db interface",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Zjk\\DbInterface\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "zjk"
+        }
+    ],
+    "require": {}
+}
