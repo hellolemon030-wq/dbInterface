@@ -74,4 +74,8 @@ class PdoDb implements DBInterface
     {
         $this->pdo->rollBack();
     }
+
+    public function inTransaction(){
+        return $this->pdo->inTransaction();
+    }
 }
